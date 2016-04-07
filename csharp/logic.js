@@ -24,7 +24,7 @@ Blockly.CSharp.controls_if = function() {
 
 Blockly.CSharp.logic_compare = function() {
   // Comparison operator.
-  var mode = this.getTitleValue('OP');
+  var mode = this.getFieldValue('OP');
   var operator = Blockly.CSharp.logic_compare.OPERATORS[mode];
   var order = (operator == '==' || operator == '!=') ?
       Blockly.CSharp.ORDER_EQUALITY : Blockly.CSharp.ORDER_RELATIONAL;
@@ -45,7 +45,7 @@ Blockly.CSharp.logic_compare.OPERATORS = {
 
 Blockly.CSharp.logic_operation = function() {
   // Operations 'and', 'or'.
-  var operator = (this.getTitleValue('OP') == 'AND') ? '&&' : '||';
+  var operator = (this.getFieldValue('OP') == 'AND') ? '&&' : '||';
   var order = (operator == '&&') ? Blockly.CSharp.ORDER_LOGICAL_AND :
       Blockly.CSharp.ORDER_LOGICAL_OR;
   var argument0 = Blockly.CSharp.valueToCode(this, 'A', order) || 'false';
@@ -65,7 +65,7 @@ Blockly.CSharp.logic_negate = function() {
 
 Blockly.CSharp.logic_boolean = function() {
   // Boolean values true and false.
-  var code = (this.getTitleValue('BOOL') == 'TRUE') ? 'true' : 'false';
+  var code = (this.getFieldValue('BOOL') == 'TRUE') ? 'true' : 'false';
   return [code, Blockly.CSharp.ORDER_ATOMIC];
 };
 

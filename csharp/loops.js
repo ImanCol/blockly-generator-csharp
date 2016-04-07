@@ -4,7 +4,7 @@ Blockly.CSharp.control = {};
 
 Blockly.CSharp.controls_repeat = function() {
   // Repeat n times (internal number).
-  var repeats = Number(this.getTitleValue('TIMES'));
+  var repeats = Number(this.getFieldValue('TIMES'));
   var branch = Blockly.CSharp.statementToCode(this, 'DO');
   if (Blockly.CSharp.INFINITE_LOOP_TRAP) {
     branch = Blockly.CSharp.INFINITE_LOOP_TRAP.replace(/%1/g,
@@ -46,7 +46,7 @@ Blockly.CSharp.controls_repeat_ext = function() {
 
 Blockly.CSharp.controls_whileUntil = function() {
   // Do while/until loop.
-  var until = this.getTitleValue('MODE') == 'UNTIL';
+  var until = this.getFieldValue('MODE') == 'UNTIL';
   var argument0 = Blockly.CSharp.valueToCode(this, 'BOOL',
       until ? Blockly.CSharp.ORDER_LOGICAL_NOT :
       Blockly.CSharp.ORDER_NONE) || 'false';
@@ -64,7 +64,7 @@ Blockly.CSharp.controls_whileUntil = function() {
 Blockly.CSharp.controls_for = function() {
   // For loop.
   var variable0 = Blockly.CSharp.variableDB_.getName(
-      this.getTitleValue('VAR'), Blockly.Variables.NAME_TYPE);
+      this.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
   var argument0 = Blockly.CSharp.valueToCode(this, 'FROM',
       Blockly.CSharp.ORDER_ASSIGNMENT) || '0';
   var argument1 = Blockly.CSharp.valueToCode(this, 'TO',
@@ -132,7 +132,7 @@ Blockly.CSharp.controls_for = function() {
 Blockly.CSharp.controls_forEach = function() {
   // For each loop.
   var variable0 = Blockly.CSharp.variableDB_.getName(
-      this.getTitleValue('VAR'), Blockly.Variables.NAME_TYPE);
+      this.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
   var argument0 = Blockly.CSharp.valueToCode(this, 'LIST',
       Blockly.CSharp.ORDER_ASSIGNMENT) || '[]';
   var branch = Blockly.CSharp.statementToCode(this, 'DO');
@@ -161,7 +161,7 @@ Blockly.CSharp.controls_forEach = function() {
 
 Blockly.CSharp.controls_flow_statements = function() {
   // Flow statements: continue, break.
-  switch (this.getTitleValue('FLOW')) {
+  switch (this.getFieldValue('FLOW')) {
     case 'BREAK':
       return 'break;\n';
     case 'CONTINUE':

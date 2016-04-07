@@ -58,7 +58,7 @@ Blockly.CSharp.lists_isEmpty = function() {
 
 Blockly.CSharp.lists_indexOf = function() {
   // Find an item in the list.
-  var operator = this.getTitleValue('END') == 'FIRST' ?
+  var operator = this.getFieldValue('END') == 'FIRST' ?
       'IndexOf' : 'LastIndexOf';
   var argument0 = Blockly.CSharp.valueToCode(this, 'FIND',
       Blockly.CSharp.ORDER_NONE) || 'null';
@@ -69,8 +69,8 @@ Blockly.CSharp.lists_indexOf = function() {
 };
 
 Blockly.CSharp.lists_getIndex = function() {
-  var mode = this.getTitleValue('MODE') || 'GET';
-  var where = this.getTitleValue('WHERE') || 'FROM_START';
+  var mode = this.getFieldValue('MODE') || 'GET';
+  var where = this.getFieldValue('WHERE') || 'FROM_START';
   var at = Blockly.CSharp.valueToCode(this, 'AT',
       Blockly.CSharp.ORDER_UNARY_NEGATION) || '1';
   var list = Blockly.CSharp.valueToCode(this, 'VALUE',
@@ -178,8 +178,8 @@ Blockly.CSharp.lists_setIndex = function() {
   // Set element at index.
   var list = Blockly.CSharp.valueToCode(this, 'LIST',
       Blockly.CSharp.ORDER_MEMBER) || 'null';
-  var mode = this.getTitleValue('MODE') || 'GET';
-  var where = this.getTitleValue('WHERE') || 'FROM_START';
+  var mode = this.getFieldValue('MODE') || 'GET';
+  var where = this.getFieldValue('WHERE') || 'FROM_START';
   var at = Blockly.CSharp.valueToCode(this, 'AT',
       Blockly.CSharp.ORDER_NONE) || '1';
   var value = Blockly.CSharp.valueToCode(this, 'TO',
@@ -239,8 +239,8 @@ Blockly.CSharp.lists_getSublist = function() {
   // Get sublist.
   var list = Blockly.CSharp.valueToCode(this, 'LIST',
       Blockly.CSharp.ORDER_MEMBER) || 'null';
-  var where1 = this.getTitleValue('WHERE1');
-  var where2 = this.getTitleValue('WHERE2');
+  var where1 = this.getFieldValue('WHERE1');
+  var where2 = this.getFieldValue('WHERE2');
   var at1 = Blockly.CSharp.valueToCode(this, 'AT1',
       Blockly.CSharp.ORDER_NONE) || '1';
   var at2 = Blockly.CSharp.valueToCode(this, 'AT2',

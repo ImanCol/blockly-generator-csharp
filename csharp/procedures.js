@@ -5,7 +5,7 @@ Blockly.CSharp.procedures = {};
 Blockly.CSharp.procedures_defreturn = function() {
   // Define a procedure with a return value.
   var funcName = Blockly.CSharp.variableDB_.getName(
-      this.getTitleValue('NAME'), Blockly.Procedures.NAME_TYPE);
+      this.getFieldValue('NAME'), Blockly.Procedures.NAME_TYPE);
   var branch = Blockly.CSharp.statementToCode(this, 'STACK');
 
   if (Blockly.CSharp.INFINITE_LOOP_TRAP) {
@@ -56,7 +56,7 @@ Blockly.CSharp.procedures_defnoreturn =
 Blockly.CSharp.procedures_callreturn = function() {
   // Call a procedure with a return value.
   var funcName = Blockly.CSharp.variableDB_.getName(
-      this.getTitleValue('NAME'), Blockly.Procedures.NAME_TYPE);
+      this.getFieldValue('NAME'), Blockly.Procedures.NAME_TYPE);
   var args = [];
   for (var x = 0; x < this.arguments_.length; x++) {
     args[x] = Blockly.CSharp.valueToCode(this, 'ARG' + x,
@@ -69,7 +69,7 @@ Blockly.CSharp.procedures_callreturn = function() {
 Blockly.CSharp.procedures_callnoreturn = function() {
   // Call a procedure with no return value.
   var funcName = Blockly.CSharp.variableDB_.getName(
-      this.getTitleValue('NAME'), Blockly.Procedures.NAME_TYPE);
+      this.getFieldValue('NAME'), Blockly.Procedures.NAME_TYPE);
   var args = [];
   for (var x = 0; x < this.arguments_.length; x++) {
     args[x] = Blockly.CSharp.valueToCode(this, 'ARG' + x, Blockly.CSharp.ORDER_COMMA) || 'null';

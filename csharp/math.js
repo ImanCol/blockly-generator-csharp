@@ -4,13 +4,13 @@ Blockly.CSharp.math = {};
 
 Blockly.CSharp.math_number = function() {
   // Numeric value.
-  var code = window.parseFloat(this.getTitleValue('NUM'));
+  var code = window.parseFloat(this.getFieldValue('NUM'));
   return [code, Blockly.CSharp.ORDER_ATOMIC];
 };
 
 Blockly.CSharp.math_arithmetic = function() {
   // Basic arithmetic operators, and power.
-  var mode = this.getTitleValue('OP');
+  var mode = this.getFieldValue('OP');
   var tuple = Blockly.CSharp.math_arithmetic.OPERATORS[mode];
   var operator = tuple[0];
   var order = tuple[1];
@@ -36,7 +36,7 @@ Blockly.CSharp.math_arithmetic.OPERATORS = {
 
 Blockly.CSharp.math_single = function() {
   // Math operators with single operand.
-  var operator = this.getTitleValue('OP');
+  var operator = this.getFieldValue('OP');
   var code;
   var arg;
   if (operator == 'NEG') {
@@ -120,7 +120,7 @@ Blockly.CSharp.math_single = function() {
 
 Blockly.CSharp.math_constant = function() {
   // Constants: PI, E, the Golden Ratio, sqrt(2), 1/sqrt(2), INFINITY.
-  var constant = this.getTitleValue('CONSTANT');
+  var constant = this.getFieldValue('CONSTANT');
   return Blockly.CSharp.math_constant.CONSTANTS[constant];
 };
 
@@ -138,7 +138,7 @@ Blockly.CSharp.math_number_property = function() {
   // or if it is divisible by certain number. Returns true or false.
   var number_to_check = Blockly.CSharp.valueToCode(this, 'NUMBER_TO_CHECK',
       Blockly.CSharp.ORDER_MODULUS) || 'double.NaN';
-  var dropdown_property = this.getTitleValue('PROPERTY');
+  var dropdown_property = this.getFieldValue('PROPERTY');
   var code;
   if (dropdown_property == 'PRIME') {
     // Prime is a special case as it is not a one-liner test.
@@ -196,7 +196,7 @@ Blockly.CSharp.math_change = function() {
   var argument0 = Blockly.CSharp.valueToCode(this, 'DELTA',
       Blockly.CSharp.ORDER_ADDITION) || '0.0';
   var varName = Blockly.CSharp.variableDB_.getName(
-      this.getTitleValue('VAR'), Blockly.Variables.NAME_TYPE);
+      this.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
   return varName + ' = (' + varName + '.GetType().Name == "Double" ? ' + varName + ' : 0.0) + ' + argument0 + ';\n';
 };
 
@@ -207,7 +207,7 @@ Blockly.CSharp.math_trig = Blockly.CSharp.math_single;
 
 Blockly.CSharp.math_on_list = function() {
   // Math functions for lists.
-  var func = this.getTitleValue('OP');
+  var func = this.getFieldValue('OP');
   var list, code;
   switch (func) {
     case 'SUM':

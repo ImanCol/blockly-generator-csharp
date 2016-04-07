@@ -4,7 +4,7 @@ Blockly.CSharp.text = {};
 
 Blockly.CSharp.text = function() {
   // Text value.
-  var code = Blockly.CSharp.quote_(this.getTitleValue('TEXT'));
+  var code = Blockly.CSharp.quote_(this.getFieldValue('TEXT'));
   return [code, Blockly.CSharp.ORDER_ATOMIC];
 };
 
@@ -34,7 +34,7 @@ Blockly.CSharp.text_join = function() {
 
 Blockly.CSharp.text_append = function() {
   // Append to a variable in place.
-  var varName = Blockly.CSharp.variableDB_.getName(this.getTitleValue('VAR'), Blockly.Variables.NAME_TYPE);
+  var varName = Blockly.CSharp.variableDB_.getName(this.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
   var argument0 = Blockly.CSharp.valueToCode(this, 'TEXT',
       Blockly.CSharp.ORDER_NONE) || '""';
   return varName + ' = String.Concat(' + varName + ', ' + argument0 + ');\n';
@@ -54,7 +54,7 @@ Blockly.CSharp.text_isEmpty = function() {
 
 Blockly.CSharp.text_indexOf = function() {
   // Search the text for a substring.
-  var operator = this.getTitleValue('END') == 'FIRST' ?
+  var operator = this.getFieldValue('END') == 'FIRST' ?
       'IndexOf' : 'LastIndexOf';
   var argument0 = Blockly.CSharp.valueToCode(this, 'FIND', Blockly.CSharp.ORDER_NONE) || '""';
   var argument1 = Blockly.CSharp.valueToCode(this, 'VALUE', Blockly.CSharp.ORDER_MEMBER) || '""';
@@ -63,7 +63,7 @@ Blockly.CSharp.text_indexOf = function() {
 };
 
 Blockly.CSharp.text_charAt = function() {
-  var where = this.getTitleValue('WHERE') || 'FROM_START';
+  var where = this.getFieldValue('WHERE') || 'FROM_START';
   var at = Blockly.CSharp.valueToCode(this, 'AT',
       Blockly.CSharp.ORDER_UNARY_NEGATION) || '1';
   var text = Blockly.CSharp.valueToCode(this, 'VALUE',
@@ -106,8 +106,8 @@ Blockly.CSharp.text_charAt = function() {
 Blockly.CSharp.text_getSubstring = function() {
   // Get substring.
   var text = Blockly.CSharp.valueToCode(this, 'STRING', Blockly.CSharp.ORDER_MEMBER) || 'null';
-  var where1 = this.getTitleValue('WHERE1');
-  var where2 = this.getTitleValue('WHERE2');
+  var where1 = this.getFieldValue('WHERE1');
+  var where2 = this.getFieldValue('WHERE2');
   var at1 = Blockly.CSharp.valueToCode(this, 'AT1', Blockly.CSharp.ORDER_NONE) || '1';
   var at2 = Blockly.CSharp.valueToCode(this, 'AT2', Blockly.CSharp.ORDER_NONE) || '1';
   if (where1 == 'FIRST' && where2 == 'LAST') {
@@ -147,7 +147,7 @@ Blockly.CSharp.text_getSubstring = function() {
 
 Blockly.CSharp.text_changeCase = function() {
   // Change capitalization.
-  var mode = this.getTitleValue('CASE');
+  var mode = this.getFieldValue('CASE');
   var operator = Blockly.CSharp.text_changeCase.OPERATORS[mode];
   var code;
   if (operator) {
@@ -186,7 +186,7 @@ Blockly.CSharp.text_changeCase.OPERATORS = {
 
 Blockly.CSharp.text_trim = function() {
   // Trim spaces.
-  var mode = this.getTitleValue('MODE');
+  var mode = this.getFieldValue('MODE');
   var operator = Blockly.CSharp.text_trim.OPERATORS[mode];
   var argument0 = Blockly.CSharp.valueToCode(this, 'TEXT', Blockly.CSharp.ORDER_MEMBER) || '""';
   return [argument0 + operator, Blockly.CSharp.ORDER_FUNCTION_CALL];
@@ -205,8 +205,8 @@ Blockly.CSharp.text_print = function() {
 };
 
 Blockly.CSharp.text_prompt = function () {
-    var msg = Blockly.CSharp.quote_(this.getTitleValue('TEXT'));
-    var toNumber = this.getTitleValue('TYPE') == 'NUMBER';
+    var msg = Blockly.CSharp.quote_(this.getFieldValue('TEXT'));
+    var toNumber = this.getFieldValue('TYPE') == 'NUMBER';
 
     var functionName = Blockly.CSharp.variableDB_.getDistinctName('text_promptInput', Blockly.Generator.NAME_TYPE);
     Blockly.CSharp.text_prompt.promptInput = functionName;
