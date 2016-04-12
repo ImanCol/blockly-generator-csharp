@@ -60,14 +60,26 @@ Blockly.CSharp.init = function(workspace) {
     }
 
     var defvars = [];
-    var variables = Blockly.Variables.allVariables(workspace);
-    for (var x = 0; x < variables.length; x++) {
-      defvars[x] = 'dynamic ' +
-          Blockly.CSharp.variableDB_.getName(variables[x],
-          Blockly.Variables.NAME_TYPE) + ';';
-    }
+    defvars = defvars.concat(Blockly.CSharp.getDefinitions(workspace));
+    defvars = defvars.concat(Blockly.CSharp.getDefinitions(workspace, 'inferbool'));
+    defvars = defvars.concat(Blockly.CSharp.getDefinitions(workspace, 'inferdouble'));
     Blockly.CSharp.definitions_['variables'] = defvars.join('\n');
   }
+}
+
+Blockly.CSharp.getDefinitions = function(workspace, type) {
+  var defvars = [];
+  var variables = Blockly.Variables.allVariables(workspace, type);
+  for (var x = 0; x < variables.length; x++) {
+    var name = Blockly.CSharp.variableDB_.getName(variables[x],
+      Blockly.Variables.NAME_TYPE);
+    var prefix = 'dynamic ';
+    if(type && type.startsWith('infer')) {
+      prefix = "Variable<" + type.substr(5) + "> ";
+    }
+    defvars[x] = prefix + name + ";";
+  }
+  return defvars;
 };
 
 /* Prepend the generated code with the variable definitions. */
