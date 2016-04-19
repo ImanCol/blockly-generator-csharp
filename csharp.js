@@ -83,12 +83,16 @@ Blockly.CSharp.getDefinitions = function(workspace, type) {
 };
 
 /* Prepend the generated code with the variable definitions. */
-Blockly.CSharp.finish = function(code) {
+Blockly.CSharp.build_definitions = function() {
   var definitions = [];
   for (var name in Blockly.CSharp.definitions_) {
     definitions.push(Blockly.CSharp.definitions_[name]);
   }
-  return definitions.join('\n\n') + '\n\n\n' + code;
+  return definitions.join('\n\n') + '\n\n\n';
+};
+
+Blockly.CSharp.finish = function(code) {
+  return code;
 };
 
 /**
