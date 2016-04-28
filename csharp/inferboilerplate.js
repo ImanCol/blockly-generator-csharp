@@ -1,14 +1,15 @@
 'use strict';
 
+Blockly.CSharp.algorithmMap = {
+  EP: "ExpectationPropagation",
+  VMP: "VariationalMessagePassing",
+  Gibbs: "GibbsSampling"
+};
+
 Blockly.CSharp['inferboilerplate'] = function(block) {
   var getEngineBoiler = function(algorithm) {
     var declaration = "InferenceEngine engine = new InferenceEngine();\n";
-    var algorithmMap = {
-      EP: "ExpectationPropagation",
-      VMP: "VariationalMessagePassing",
-      Gibbs: "GibbsSampling"
-    };
-    var algorithmDeclaration = "engine.Algorithm = new "+ algorithmMap[algorithm] +"();\n"
+    var algorithmDeclaration = "engine.Algorithm = new "+ Blockly.CSharp.algorithmMap[algorithm] +"();\n"
     return declaration + algorithmDeclaration;
   }
   var preBoiler = `using System;
@@ -37,4 +38,16 @@ namespace MicrosoftResearch.Infer.Tutorials
                 .join("\n");
   statements = preBoiler + "\n" + statements + "\n" + postBoiler;
   return statements;
+};
+
+Blockly.CSharp['inferinfer'] = function(block) {
+  var variable = Blockly.CSharp.valueToCode(block, 'DISTR', Blockly.CSharp.ORDER_ATOMIC);
+  var code = 'ie.Infer(' + variable + ')';
+  return [code, Blockly.CSharp.ORDER_NONE];
+};
+
+Blockly.CSharp['inferalgo'] = function(block) {
+  var algorithm = block.getFieldValue('ALGORITHM_DROPDOWN');
+  var code = 'engine.Algorithm is ' + Blockly.CSharp.algorithmMap[algorithm];
+  return [code, Blockly.CSharp.ORDER_NONE];
 };

@@ -17,3 +17,10 @@ Blockly.CSharp.inferbool_variables_set = function() {
       this.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
   return varName + ' = ' + argument0 + '.Named("' + varName + '");\n';
 };
+
+Blockly.CSharp['infer_observed'] = function(block) {
+  var distribution = Blockly.CSharp.valueToCode(block, 'DISTR', Blockly.CSharp.ORDER_ATOMIC);
+  var value = Blockly.CSharp.valueToCode(block, 'VALUE', Blockly.CSharp.ORDER_ATOMIC);
+  var code = distribution + '.ObservedValue = ' + value + ';\n';
+  return code;
+};
