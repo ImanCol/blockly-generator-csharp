@@ -11,18 +11,18 @@ Blockly.CSharp['inferboilerplate'] = function(block) {
     var declaration = "InferenceEngine engine = new InferenceEngine();\n";
     var algorithmDeclaration = "engine.Algorithm = new "+ Blockly.CSharp.algorithmMap[algorithm] +"();\n"
     return declaration + algorithmDeclaration;
-  }
+  };
   var preBoiler = `using System;
 using System.Collections.Generic;
 using System.Text;
 using MicrosoftResearch.Infer.Models;
 using MicrosoftResearch.Infer;
 
-namespace MicrosoftResearch.Infer.Tutorials
+namespace BlocklyInfer
 {
-\tpublic class FirstExample
+\tpublic class BlocklyInfer
 \t{
-\t\tpublic void Run()
+\t\tpublic static void Main()
 \t\t{`;
   var postBoiler = `\t\t}
 \t}
@@ -42,7 +42,7 @@ namespace MicrosoftResearch.Infer.Tutorials
 
 Blockly.CSharp['inferinfer'] = function(block) {
   var variable = Blockly.CSharp.valueToCode(block, 'DISTR', Blockly.CSharp.ORDER_ATOMIC);
-  var code = 'ie.Infer(' + variable + ')';
+  var code = 'engine.Infer(' + variable + ')';
   return [code, Blockly.CSharp.ORDER_NONE];
 };
 
@@ -50,4 +50,10 @@ Blockly.CSharp['inferalgo'] = function(block) {
   var algorithm = block.getFieldValue('ALGORITHM_DROPDOWN');
   var code = 'engine.Algorithm is ' + Blockly.CSharp.algorithmMap[algorithm];
   return [code, Blockly.CSharp.ORDER_NONE];
+};
+
+Blockly.CSharp['inferconstrain_true'] = function(block) {
+  var variable = Blockly.CSharp.valueToCode(block, 'DISTR', Blockly.CSharp.ORDER_ATOMIC);
+  var code = 'Variable.ConstrainTrue(' + variable + ');\n';
+  return code;
 };

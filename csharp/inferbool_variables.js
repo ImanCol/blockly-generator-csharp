@@ -18,7 +18,7 @@ Blockly.CSharp.inferbool_variables_set = function() {
   return varName + ' = ' + argument0 + '.Named("' + varName + '");\n';
 };
 
-Blockly.CSharp['infer_observed'] = function(block) {
+Blockly.CSharp['inferbool_observed'] = function(block) {
   var distribution = Blockly.CSharp.valueToCode(block, 'DISTR', Blockly.CSharp.ORDER_ATOMIC);
   var value = Blockly.CSharp.valueToCode(block, 'VALUE', Blockly.CSharp.ORDER_ATOMIC);
   var code = distribution + '.ObservedValue = ' + value + ';\n';
