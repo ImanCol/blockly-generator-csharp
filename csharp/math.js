@@ -386,3 +386,10 @@ Blockly.CSharp.math_random_float = function() {
   // Random fraction between 0 and 1.
   return ['(new Random()).NextDouble()', Blockly.CSharp.ORDER_FUNCTION_CALL];
 };
+
+Blockly.CSharp['math_normal'] = function(block) {
+  var mean = Blockly.CSharp.valueToCode(block, 'MEAN', Blockly.CSharp.ORDER_ATOMIC);
+  var stdDev = Blockly.CSharp.valueToCode(block, 'STD_DEV', Blockly.CSharp.ORDER_ATOMIC);
+  var code = 'Rand.Normal(' + mean + ", " + stdDev +")";
+  return [code, Blockly.CSharp.ORDER_NONE];
+};

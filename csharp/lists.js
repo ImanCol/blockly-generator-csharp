@@ -34,6 +34,7 @@ Blockly.CSharp.lists_repeat = function() {
     func.push('});');
     Blockly.CSharp.definitions_['lists_repeat'] = func.join('\n');
   }
+  console.log(Blockly.CSharp.definitions_['lists_repeat'])
   var argument0 = Blockly.CSharp.valueToCode(this, 'ITEM',
       Blockly.CSharp.ORDER_COMMA) || 'null';
   var argument1 = Blockly.CSharp.valueToCode(this, 'NUM',
@@ -205,7 +206,7 @@ Blockly.CSharp.lists_setIndex = function() {
       at = parseFloat(at) - 1;
     } else {
       // If the index is dynamic, decrement it in code.
-        at = '(' + list + '.Count) - ' + (at + 1);
+        at = '(' + list + '.Count) - ' + at;
     }
     if (mode == 'SET') {
       return list + '[' + at + '] = ' + value + ';\n';

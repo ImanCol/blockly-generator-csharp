@@ -25,6 +25,20 @@ Blockly.CSharp['infer_gaussianmeanvar'] = function(block) {
   return [code, Blockly.CSharp.ORDER_NONE];
 };
 
+Blockly.CSharp['infer_gaussianmeanprec'] = function(block) {
+  var mean = Blockly.CSharp.valueToCode(block, 'MEAN', Blockly.CSharp.ORDER_ATOMIC);
+  var precision = Blockly.CSharp.valueToCode(block, 'PREC', Blockly.CSharp.ORDER_ATOMIC);
+  var code = 'Variable.GaussianFromMeanAndPrecision(' + mean + ', ' + precision + ')';
+  return [code, Blockly.CSharp.ORDER_NONE];
+};
+
+Blockly.CSharp['infer_gammashapescale'] = function(block) {
+  var shape = Blockly.CSharp.valueToCode(block, 'SHAPE', Blockly.CSharp.ORDER_ATOMIC);
+  var scale = Blockly.CSharp.valueToCode(block, 'SCALE', Blockly.CSharp.ORDER_ATOMIC);
+  var code = 'Variable.GammaFromShapeAndScale(' + shape + ', ' + scale + ')';
+  return [code, Blockly.CSharp.ORDER_NONE];
+};
+
 Blockly.CSharp['infer_newdouble'] = function(block) {
   var code = 'Variable.New<double>()';
   return [code, Blockly.CSharp.ORDER_NONE];

@@ -15,7 +15,7 @@ Blockly.CSharp.inferdouble_variables_set = function() {
       Blockly.CSharp.ORDER_ASSIGNMENT) || 'null';
   var varName = Blockly.CSharp.variableDB_.getName(
       this.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
-  return varName + ' = ' + argument0 + '.Named("' + varName + '");\n';
+  return varName + ' = ' + argument0 + ';\n';
 };
 
 Blockly.CSharp['inferdouble_observed'] = function(block) {
